@@ -41,7 +41,7 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
                 <td><?= $row["jurusan"] ;?></td>
                 <td><img src="img/<?= $row["gambar"];?>" alt=""></td>
                 <td><a href="ubah.php?id=<?= $row["id"]; ?>"><i data-feather="edit"></i></a>
-                <a href="hapus.php?id=<?= $row["id"]; ?>"><i data-feather="trash"></i></a></td>
+                <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('yakin ?');"><i data-feather="trash"></i></a></td>
             </tr>
         <?php $i++; ?>
         <?php endforeach ;?>

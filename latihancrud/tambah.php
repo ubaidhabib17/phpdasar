@@ -36,7 +36,7 @@ if (isset($_POST["submit"])) {
 </head>
 <body>
     <h1 class="judul">Tambah Data Mahasiswa</h1>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <div class="form-group">    
             <label for="nama">Nama :</label>
             <input type="text" placeholder="masukkan nama" name="nama" autocomplete="off">
@@ -55,7 +55,7 @@ if (isset($_POST["submit"])) {
         </div>
         <div class="form-group">    
             <label for="gambar">Foto :</label>
-            <input type="text" placeholder="masukkan foto" autocomplete="off" name="gambar">
+            <input type="file" name="gambar">
         </div>
         <button type="submit" name="submit">Tambah Data</button><br>
         <a href="index.php">Back</a><br>

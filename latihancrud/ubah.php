@@ -44,8 +44,9 @@ if (isset($_POST["submit"])) {
 </head>
 <body>
     <h1 class="judul">Edit Data Mahasiswa</h1>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?= $mhs["id"]; ?>">
+        <input type="hidden" name="gambarLama" value="<?= $mhs["gambar"]; ?>">
         <div class="form-group">    
             <label for="nama">Nama :</label>
             <input type="text" value="<?= $mhs["nama"] ;?>" name="nama" autocomplete="off">
@@ -64,7 +65,8 @@ if (isset($_POST["submit"])) {
         </div>
         <div class="form-group">    
             <label for="gambar">Foto :</label>
-            <input type="text" value="<?= $mhs["gambar"] ;?>" autocomplete="off" name="gambar">
+            <img src="img/<?= $mhs['gambar']; ?>" alt="" width="60"><br>
+            <input type="file" name="gambar"><br><br>
         </div>
         <button type="submit" name="submit">Edit</button><br>
         <a href="index.php">Back</a><br>
