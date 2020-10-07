@@ -48,6 +48,15 @@ if ( !isset($_SESSION["login"]) ) {
     </script>
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="stylesheet" href="styles/index.css">
+    <style>
+        .loader{
+            position: absolute;
+            width: 200px;
+            top: 118px;
+            left: 480px;
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -56,7 +65,12 @@ if ( !isset($_SESSION["login"]) ) {
 
     <?php $j = $awalData +1; ?>
     <div class="container pt-3">
-        <a href="tambah.php" class="btn btn-info">Tambah Data<i data-feather="plus-square"></i></a><br>
+        <a href="tambah.php" class="btn btn-info">Tambah Data<i data-feather="plus-square"></i></a><br><br>
+
+        <form action="" method="POST">
+            <input type="text" name="keyword" id="keyword" size="40" autofocus placeholder="Cari data"
+                autocomplete="off">
+        </form>
 
         <!-- navigasi -->
 
@@ -76,35 +90,38 @@ if ( !isset($_SESSION["login"]) ) {
         <?php if ($halamanAktif < $jumlahHalaman ) :?>
         <a href="?halaman=<?= $halamanAktif + 1; ?>">&gt;</a>
         <?php endif; ?>
-        <table border="2" cellspacing="0" cellpadding="10" class="table"><br>
-            <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>Nrp</th>
-                <th>Email</th>
-                <th>Jurusan</th>
-                <th>Gambar</th>
-                <th>Aksi</th>
-            </tr>
-            <?php foreach($mahasiswa as $row) : ?>
-            <tr>
-                <td><?= $j; ?></td>
-                <td><?= $row["nama"] ;?></td>
-                <td><?= $row["nrp"] ;?></td>
-                <td><?= $row["email"] ;?></td>
-                <td><?= $row["jurusan"] ;?></td>
-                <td><img src="img/<?= $row["gambar"];?>" alt=""></td>
-                <td><a href="ubah.php?id=<?= $row["id"]; ?>"><i data-feather="edit"></i></a>
-                    <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('yakin ?');"><i
-                            data-feather="trash"></i></a></td>
-            </tr>
-            <?php $j++; ?>
-            <?php endforeach ;?>
-        </table>
+        <div id="container">
+            <table border="2" cellspacing="0" cellpadding="10" class="table"><br>
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Nrp</th>
+                    <th>Email</th>
+                    <th>Jurusan</th>
+                    <th>Gambar</th>
+                    <th>Aksi</th>
+                </tr>
+                <?php foreach($mahasiswa as $row) : ?>
+                <tr>
+                    <td><?= $j; ?></td>
+                    <td><?= $row["nama"] ;?></td>
+                    <td><?= $row["nrp"] ;?></td>
+                    <td><?= $row["email"] ;?></td>
+                    <td><?= $row["jurusan"] ;?></td>
+                    <td><img src="img/<?= $row["gambar"];?>" alt=""></td>
+                    <td><a href="ubah.php?id=<?= $row["id"]; ?>"><i data-feather="edit"></i></a>
+                        <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('yakin ?');"><i
+                                data-feather="trash"></i></a></td>
+                </tr>
+                <?php $j++; ?>
+                <?php endforeach ;?>
+            </table>
+        </div>
     </div>
     <script>
         feather.replace()
     </script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
