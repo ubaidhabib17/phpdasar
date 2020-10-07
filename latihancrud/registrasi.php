@@ -1,6 +1,25 @@
 <?php
 require 'functions.php';
 
+// cek cookie
+if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
+    $id = $_COOKIE['id'];
+    $key = $_COOKIE['key'];
+    // ambil username sesuai id
+    $result = mysqli_query($conn, "SELECT username FROM user WHERE id = '$id'");
+
+    $row = mysqli_fetch_assoc($result);
+
+    // cek cookie username
+    if ($key == hash('sha256', $row['username'])) {
+        $_SESSION['login'] = true;
+    }
+}
+
+if ( !isset($_SESSION["login"]) ) {
+    header("Location: login.php");
+}
+
 if (isset($_POST['register'])) {
     if (registrasi($_POST) > 0) {
         echo "<script>

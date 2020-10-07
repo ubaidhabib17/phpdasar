@@ -6,7 +6,9 @@
 
     session_destroy();
     setcookie('id', '', time()-1);
-    setcookie('username', '', time()-1);
+    setcookie('key', '', time()-1);
     header("Location: login.php");
+
+    
 
 ?>
