@@ -1,5 +1,10 @@
 <?php
 require 'functions.php';
+session_start();
+
+if ( !isset($_SESSION["login"]) ) {
+    header("Location: login.php");
+}
 
 $mahasiswa = query("SELECT * FROM mahasiswa");
 
@@ -17,6 +22,7 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
     <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
+    <a href="logout.php">Logout</a>
     <h1 class="judul">Daftar Mahasiswa</h1>
     
     <?php $i = 1; ?>
