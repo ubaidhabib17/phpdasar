@@ -4,14 +4,14 @@ session_start();
 
 // pagination
 // konfigurasi
-$jumlahDataPerHalaman = 2;
-$jumlahData = count(query("SELECT * FROM mahasiswa"));
-$jumlahHalaman =ceil($jumlahData / $jumlahDataPerHalaman);
-$halamanAktif = (isset($_GET['halaman'])) ? $_GET['halaman'] : 1;
-$awalData = ($jumlahDataPerHalaman * $halamanAktif) - $jumlahDataPerHalaman;
+// $jumlahDataPerHalaman = 2;
+// $jumlahData = count(query("SELECT * FROM mahasiswa"));
+// $jumlahHalaman =ceil($jumlahData / $jumlahDataPerHalaman);
+// $halamanAktif = (isset($_GET['halaman'])) ? $_GET['halaman'] : 1;
+// $awalData = ($jumlahDataPerHalaman * $halamanAktif) - $jumlahDataPerHalaman;
 
 
-$mahasiswa = query("SELECT * FROM mahasiswa LIMIT $awalData, $jumlahDataPerHalaman");
+$mahasiswa = query("SELECT * FROM mahasiswa");
 
 // cek cookie
 if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
@@ -60,10 +60,10 @@ if ( !isset($_SESSION["login"]) ) {
 </head>
 
 <body>
-    <a href="logout.php">Logout</a>
+    <a href="logout.php">Logout</a> || <a href="cetak.php" target="_blank">Cetak</a>
     <h1 class="judul">Daftar Mahasiswa</h1>
 
-    <?php $j = $awalData +1; ?>
+    <?php $j =1; ?>
     <div class="container pt-3">
         <a href="tambah.php" class="btn btn-info">Tambah Data<i data-feather="plus-square"></i></a><br><br>
 
@@ -72,24 +72,9 @@ if ( !isset($_SESSION["login"]) ) {
                 autocomplete="off">
         </form>
 
-        <!-- navigasi -->
+        
 
-        <?php if ($halamanAktif > 1) :?>
-        <a href="?halaman=<?= $halamanAktif-1; ?>">&lt;</a>
-        <?php endif; ?>
-
-        <?php for ($i=1; $i <= $jumlahHalaman ; $i++) : ?>
-        <?php if ($i == $halamanAktif) :?>
-        <a href="?halaman=<?= $i ?>" style="color: red;"><?= $i ?></a>
-        <?php else :?>
-        <a href="?halaman=<?= $i ?>"><?= $i ?></a>
-        <?php endif; ?>
-
-        <?php endfor; ?>
-
-        <?php if ($halamanAktif < $jumlahHalaman ) :?>
-        <a href="?halaman=<?= $halamanAktif + 1; ?>">&gt;</a>
-        <?php endif; ?>
+    
         <div id="container">
             <table border="2" cellspacing="0" cellpadding="10" class="table"><br>
                 <tr>
